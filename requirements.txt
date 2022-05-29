@@ -1,0 +1,16 @@
+beautifulsoup4~=4.11.1
+selenium
+lxml
+geckodriver-autoinstaller
+webdriver_manager
+pandas~=1.4.2
+regex
+credentials
+feedparser~=6.0.8
+
+
+requests~=2.27.1
+bs4~=0.0.1
+libgenapi~=1.2.1
+weblib~=0.1.30
+yagmail~=0.15.277
