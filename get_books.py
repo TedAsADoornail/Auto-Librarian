@@ -119,6 +119,7 @@ def get_isbn(soup):
         isbn = re.findall(r'nisbn: [0-9]{10}', str(soup))[0].split()[1]
         return isbn
     except:
+        print(traceback.print_exc())
         return "isbn not found"
 
 
@@ -127,6 +128,7 @@ def get_isbn13(soup):
         isbn13 = re.findall(r'nisbn13: [0-9]{13}', str(soup))[0].split()[1]
         return isbn13
     except:
+        print(traceback.print_exc())
         return "isbn13 not found"
 
 
@@ -155,6 +157,7 @@ def get_year_first_published(soup):
         year_first_published = year_first_published.string
         return re.search('([0-9]{3,4})', year_first_published).group(1)
     else:
+        print(traceback.print_exc())
         return ''
 
 
@@ -283,6 +286,7 @@ def search_for_a_fiction_book_by_title(title):
             filtered_results = filter_results(results, {'Title': title, 'Extension': 'epub'}, True)
             return filtered_results
     except:
+        print(traceback.print_exc())
         return 0
 
 
@@ -295,6 +299,7 @@ def search_for_a_nonfiction_book_by_title(title):
         else:
             return filter_results(results, {'Title': title, 'Extension': 'epub'}, True)
     except Exception as exception:
+        print(traceback.print_exc())
         return exception
 
 
