@@ -10,6 +10,7 @@ import requests
 from urllib.request import urlopen
 import bs4
 import csv
+import traceback
 from pathlib import Path
 import unicodedata
 
@@ -339,6 +340,7 @@ def main():
                     write_sent_book_id(book_id)
 
         except Exception as exception:
+            print(traceback.print_exc())
             print(exception)
 
 
