@@ -340,7 +340,7 @@ def main():
                     write_sent_book_id(book_id)
 
         except Exception as exception:
-            traceback.print_exc()
+            print(traceback.print_exc())
             print(exception)
 
 
