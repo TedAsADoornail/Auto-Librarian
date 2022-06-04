@@ -313,7 +313,7 @@ def write_sent_book_id(book_id):
 
 
 def main():
-    logging.basicConfig(filename='get_books.log', filemod='w', level=logging.DEBUG)
+    logging.basicConfig(filename='get_books.log', filemode='w', level=logging.DEBUG)
     user_id = '50601648-ted'
     shelf = 'to-read'
     book_file = Path(sent_books_csv)
