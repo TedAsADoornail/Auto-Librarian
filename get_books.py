@@ -1,18 +1,17 @@
-import subprocess
-from datetime import datetime
-
-import feedparser
-import re
-import time
-import send_to_kindle
-import libgenapi
-import requests
-from urllib.request import urlopen
 import bs4
 import csv
-import traceback
+import feedparser
+import libgenapi
+import logging
 from pathlib import Path
+import re
+import requests
+import send_to_kindle
+import subprocess
+import time
+import traceback
 import unicodedata
+from urllib.request import urlopen
 
 from libgen_api.libgen_search import search_title, filter_results
 
@@ -120,6 +119,7 @@ def get_isbn(soup):
         return isbn
     except:
         print(traceback.print_exc())
+        logging.warning(traceback.print_exc())
         return "isbn not found"
 
 
@@ -129,6 +129,7 @@ def get_isbn13(soup):
         return isbn13
     except:
         print(traceback.print_exc())
+        logging.warning(traceback.print_exc())
         return "isbn13 not found"
 
 
@@ -158,6 +159,7 @@ def get_year_first_published(soup):
         return re.search('([0-9]{3,4})', year_first_published).group(1)
     else:
         print(traceback.print_exc())
+        logging.warning(traceback.print_exc())
         return ''
 
 
@@ -216,6 +218,7 @@ def download_books(download_links):
                 response = urlopen(value)
             except Exception as exception:
                 print('Cannot download book because {0}'.format(exception))
+                logging.warning('Cannot download book because {0}'.format(exception))
             else:
                 return response.read()
         print('=============================')
@@ -286,7 +289,6 @@ def search_for_a_fiction_book_by_title(title):
             filtered_results = filter_results(results, {'Title': title, 'Extension': 'epub'}, True)
             return filtered_results
     except:
-        print(traceback.print_exc())
         return 0
 
 
@@ -300,6 +302,7 @@ def search_for_a_nonfiction_book_by_title(title):
             return filter_results(results, {'Title': title, 'Extension': 'epub'}, True)
     except Exception as exception:
         print(traceback.print_exc())
+        logging.warning(traceback.print_exc())
         return exception
 
 
@@ -346,6 +349,7 @@ def main():
 
         except Exception as exception:
             print(traceback.print_exc())
+            logging.warning(traceback.print_exc())
             print(exception)
 
 
